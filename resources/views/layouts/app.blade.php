@@ -16,8 +16,8 @@
             --grad: linear-gradient(135deg, #0f172a 0%, #0369a1 55%, #06b6d4 100%);
             --ink: #0f172a;
             --muted: #5b6b85;
-            --border: #dbe4f0;
-            --bg: #f3f7fb;
+            --border: #cfe0ee;
+            --bg: #d6ecfa;
             --card: #ffffff;
             --success: #10b981;
             --warning: #f59e0b;
@@ -31,12 +31,14 @@
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background-color: var(--bg);
             background-image:
-                linear-gradient(rgba(2, 132, 199, .06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(2, 132, 199, .06) 1px, transparent 1px),
-                radial-gradient(circle at 12% 0%, rgba(6, 182, 212, .16), transparent 42%),
-                radial-gradient(circle at 92% 8%, rgba(2, 132, 199, .18), transparent 40%),
-                radial-gradient(circle at 50% 100%, rgba(34, 197, 94, .08), transparent 45%);
-            background-size: 32px 32px, 32px 32px, auto, auto, auto;
+                linear-gradient(rgba(7, 89, 133, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(7, 89, 133, .08) 1px, transparent 1px),
+                radial-gradient(circle at 12% 0%, rgba(103, 232, 249, .55), transparent 42%),
+                radial-gradient(circle at 92% 10%, rgba(14, 165, 233, .45), transparent 40%),
+                radial-gradient(circle at 15% 85%, rgba(34, 197, 94, .3), transparent 42%),
+                radial-gradient(circle at 85% 95%, rgba(2, 132, 199, .35), transparent 45%),
+                linear-gradient(165deg, #bfe3fa 0%, #d9f2f3 45%, #cdeef0 100%);
+            background-size: 32px 32px, 32px 32px, auto, auto, auto, auto, auto;
             background-attachment: fixed;
             color: var(--ink);
         }
