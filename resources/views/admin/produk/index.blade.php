@@ -19,7 +19,11 @@
             <h1 class="page-title" style="margin-bottom:4px;">Kelola Produk</h1>
             <p class="page-subtitle" style="margin-bottom:0;">{{ $produk->total() }} unit terdaftar</p>
         </div>
-        <a href="{{ route('admin.produk.create') }}" class="btn">+ Tambah Produk</a>
+        <div style="display:flex; gap:10px;">
+            <a href="{{ route('admin.produk.import.create') }}" class="btn btn-outline">Import Excel</a>
+            <a href="{{ route('admin.foto-massal.create') }}" class="btn btn-outline">Upload Foto Massal</a>
+            <a href="{{ route('admin.produk.create') }}" class="btn">+ Tambah Produk</a>
+        </div>
     </div>
 
     <form method="GET" action="{{ route('admin.produk.index') }}" class="filter-bar">

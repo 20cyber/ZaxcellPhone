@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\AkunController as AdminAkunController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FotoMassalController;
 use App\Http\Controllers\Admin\PesananController as AdminPesananController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
+use App\Http\Controllers\Admin\ProdukImportController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -38,6 +40,14 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     Route::resource('produk', AdminProdukController::class)->except(['show']);
     Route::patch('produk/{produk}/stok', [AdminProdukController::class, 'updateStok'])->name('produk.stok');
+
+    Route::get('produk-import', [ProdukImportController::class, 'create'])->name('produk.import.create');
+    Route::get('produk-import/template', [ProdukImportController::class, 'template'])->name('produk.import.template');
+    Route::post('produk-import', [ProdukImportController::class, 'store'])->name('produk.import.store');
+
+    Route::get('foto-massal', [FotoMassalController::class, 'create'])->name('foto-massal.create');
+    Route::post('foto-massal/analisis', [FotoMassalController::class, 'analisis'])->name('foto-massal.analisis');
+    Route::post('foto-massal/simpan', [FotoMassalController::class, 'simpan'])->name('foto-massal.simpan');
 
     Route::get('pesanan', [AdminPesananController::class, 'index'])->name('pesanan.index');
     Route::get('pesanan/{pesanan}', [AdminPesananController::class, 'show'])->name('pesanan.show');
