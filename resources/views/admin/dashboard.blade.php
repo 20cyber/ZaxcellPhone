@@ -23,9 +23,6 @@
 
     <div class="toolbar" style="margin-top:24px;">
         <a href="{{ route('admin.produk.index') }}" class="btn">Kelola Produk</a>
-    </div>
-
-    <div class="notice">
-        Menu kelola pesanan masih dalam pengembangan.
+        <a href="{{ route('admin.pesanan.index') }}" class="btn btn-outline">Kelola Pesanan</a>
     </div>
 @endsection

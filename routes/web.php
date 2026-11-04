@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PesananController as AdminPesananController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
@@ -36,4 +37,8 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     Route::resource('produk', AdminProdukController::class)->except(['show']);
     Route::patch('produk/{produk}/stok', [AdminProdukController::class, 'updateStok'])->name('produk.stok');
+
+    Route::get('pesanan', [AdminPesananController::class, 'index'])->name('pesanan.index');
+    Route::get('pesanan/{pesanan}', [AdminPesananController::class, 'show'])->name('pesanan.show');
+    Route::patch('pesanan/{pesanan}/status', [AdminPesananController::class, 'updateStatus'])->name('pesanan.status');
 });
