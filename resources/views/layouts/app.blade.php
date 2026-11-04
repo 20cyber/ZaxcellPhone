@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #7c3aed;
-            --primary-dark: #6d28d9;
-            --accent: #ec4899;
-            --accent2: #06b6d4;
-            --grad: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-            --ink: #1e1b2e;
-            --muted: #6b6485;
-            --border: #e7e1f7;
-            --bg: #f7f5fd;
+            --primary: #0284c7;
+            --primary-dark: #075985;
+            --accent: #06b6d4;
+            --accent2: #22c55e;
+            --grad: linear-gradient(135deg, #0f172a 0%, #0369a1 55%, #06b6d4 100%);
+            --ink: #0f172a;
+            --muted: #5b6b85;
+            --border: #dbe4f0;
+            --bg: #f3f7fb;
             --card: #ffffff;
             --success: #10b981;
             --warning: #f59e0b;
@@ -29,8 +29,8 @@
             margin: 0;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background: var(--bg);
-            background-image: radial-gradient(circle at 10% -10%, rgba(236, 72, 153, .08), transparent 40%),
-                radial-gradient(circle at 90% 0%, rgba(99, 102, 241, .1), transparent 40%);
+            background-image: radial-gradient(circle at 10% -10%, rgba(6, 182, 212, .08), transparent 40%),
+                radial-gradient(circle at 90% 0%, rgba(2, 132, 199, .1), transparent 40%);
             color: var(--ink);
         }
         a { color: inherit; text-decoration: none; }
@@ -40,7 +40,7 @@
             position: sticky;
             top: 0;
             z-index: 10;
-            box-shadow: 0 4px 24px rgba(109, 40, 217, .25);
+            box-shadow: 0 4px 24px rgba(3, 105, 161, .25);
         }
         .site-header .inner {
             max-width: 1100px;
@@ -74,7 +74,7 @@
             flex-wrap: wrap;
             gap: 12px;
             align-items: end;
-            box-shadow: 0 2px 10px rgba(109, 40, 217, .05);
+            box-shadow: 0 2px 10px rgba(3, 105, 161, .05);
         }
         .filter-bar .field { display: flex; flex-direction: column; gap: 4px; }
         .filter-bar label { font-size: 12px; color: var(--muted); font-weight: 700; }
@@ -109,7 +109,7 @@
             border: 1.5px solid var(--primary);
             box-shadow: none;
         }
-        .btn-outline:hover { background: #f5f0ff; transform: none; box-shadow: none; }
+        .btn-outline:hover { background: #e0f2fe; transform: none; box-shadow: none; }
 
         .grid {
             display: grid;
@@ -124,22 +124,22 @@
             display: flex;
             flex-direction: column;
             transition: box-shadow .15s, transform .15s;
-            box-shadow: 0 2px 10px rgba(109, 40, 217, .06);
+            box-shadow: 0 2px 10px rgba(3, 105, 161, .06);
         }
-        .card:hover { box-shadow: 0 14px 28px rgba(109, 40, 217, .16); transform: translateY(-3px); }
+        .card:hover { box-shadow: 0 14px 28px rgba(3, 105, 161, .16); transform: translateY(-3px); }
         .card .thumb {
             aspect-ratio: 1 / 1;
-            background: linear-gradient(135deg, #c7d2fe, #a5b4fc);
+            background: linear-gradient(135deg, #bae6fd, #7dd3fc);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 42px;
         }
-        .card:nth-child(6n+2) .thumb { background: linear-gradient(135deg, #fbcfe8, #f9a8d4); }
-        .card:nth-child(6n+3) .thumb { background: linear-gradient(135deg, #bae6fd, #7dd3fc); }
-        .card:nth-child(6n+4) .thumb { background: linear-gradient(135deg, #bbf7d0, #86efac); }
-        .card:nth-child(6n+5) .thumb { background: linear-gradient(135deg, #fde68a, #fcd34d); }
-        .card:nth-child(6n+6) .thumb { background: linear-gradient(135deg, #ddd6fe, #c4b5fd); }
+        .card:nth-child(6n+2) .thumb { background: linear-gradient(135deg, #a5f3fc, #67e8f9); }
+        .card:nth-child(6n+3) .thumb { background: linear-gradient(135deg, #cbd5e1, #94a3b8); }
+        .card:nth-child(6n+4) .thumb { background: linear-gradient(135deg, #99f6e4, #5eead4); }
+        .card:nth-child(6n+5) .thumb { background: linear-gradient(135deg, #bfdbfe, #93c5fd); }
+        .card:nth-child(6n+6) .thumb { background: linear-gradient(135deg, #c4ddf5, #8fb8e8); }
         .card .body { padding: 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
         .card .merek { font-size: 11.5px; color: var(--primary-dark); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
         .card .model { font-size: 16px; font-weight: 700; }
@@ -151,7 +151,7 @@
             font-weight: 700;
             padding: 3px 10px;
             border-radius: 999px;
-            background: #f1edfc;
+            background: #e0f2fe;
             color: var(--primary-dark);
         }
         .badge-status-tersedia { background: #d1fae5; color: #047857; }
@@ -187,7 +187,7 @@
             background: var(--card);
             font-weight: 600;
         }
-        .pagination-wrap a:hover { background: #f5f0ff; border-color: var(--primary); }
+        .pagination-wrap a:hover { background: #e0f2fe; border-color: var(--primary); }
 
         .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
         .breadcrumb a { color: var(--primary-dark); font-weight: 600; }
@@ -202,7 +202,7 @@
             align-items: center;
             justify-content: center;
             font-size: 96px;
-            box-shadow: 0 16px 32px rgba(109, 40, 217, .25);
+            box-shadow: 0 16px 32px rgba(3, 105, 161, .25);
         }
         .detail-info h1 { font-size: 25px; margin: 0 0 4px; letter-spacing: -.02em; }
         .detail-info .merek { color: var(--primary-dark); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
@@ -243,7 +243,7 @@
             padding: 32px;
             width: 100%;
             max-width: 360px;
-            box-shadow: 0 10px 30px rgba(109, 40, 217, .1);
+            box-shadow: 0 10px 30px rgba(3, 105, 161, .1);
         }
         .auth-form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
         .auth-form .field { display: flex; flex-direction: column; gap: 4px; }
@@ -266,7 +266,7 @@
             border-left: 4px solid var(--primary);
             border-radius: 16px;
             padding: 18px;
-            box-shadow: 0 2px 10px rgba(109, 40, 217, .06);
+            box-shadow: 0 2px 10px rgba(3, 105, 161, .06);
         }
         .stat-card:nth-child(2) { border-left-color: var(--accent2); }
         .stat-card:nth-child(3) { border-left-color: var(--accent); }
@@ -278,13 +278,13 @@
         .alert-success { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
         .alert-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
 
-        table.data-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(109, 40, 217, .06); }
+        table.data-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(3, 105, 161, .06); }
         table.data-table th, table.data-table td { padding: 10px 14px; text-align: left; font-size: 13px; border-bottom: 1px solid var(--border); }
-        table.data-table th { background: #f6f3ff; color: var(--primary-dark); font-weight: 700; }
+        table.data-table th { background: #eaf4fb; color: var(--primary-dark); font-weight: 700; }
         table.data-table tr:last-child td { border-bottom: none; }
         table.data-table tr:hover td { background: #fbfaff; }
         table.data-table .thumb-cell img, table.data-table .thumb-cell .ph { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
-        table.data-table .ph { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e0e7ff, #ede9fe); font-size: 18px; }
+        table.data-table .ph { display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #dbeafe, #cffafe); font-size: 18px; }
         .row-actions { display: flex; gap: 10px; align-items: center; }
         .row-actions a { color: var(--primary-dark); font-weight: 700; }
         .row-actions button { background: none; border: none; color: var(--danger); font: inherit; font-weight: 700; cursor: pointer; padding: 0; }
@@ -292,7 +292,7 @@
         .stok-form input { width: 56px; border: 1.5px solid var(--border); border-radius: 8px; padding: 4px 6px; font-size: 13px; }
         .stok-form button { border: none; background: var(--primary); color: #fff; border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
 
-        .form-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 24px; max-width: 600px; box-shadow: 0 2px 10px rgba(109, 40, 217, .06); }
+        .form-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 24px; max-width: 600px; box-shadow: 0 2px 10px rgba(3, 105, 161, .06); }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-grid .full { grid-column: 1 / -1; }
         .form-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
@@ -328,14 +328,14 @@
             padding: 16px 20px;
             margin-top: 16px;
             font-weight: 700;
-            box-shadow: 0 2px 10px rgba(109, 40, 217, .06);
+            box-shadow: 0 2px 10px rgba(3, 105, 161, .06);
         }
         .cart-summary .harga { font-size: 21px; color: var(--primary-dark); }
 
         .sim-banner {
-            background: #eef2ff;
-            border: 1px solid #c7d2fe;
-            color: #3730a3;
+            background: #e0f2fe;
+            border: 1px solid #7dd3fc;
+            color: #075985;
             padding: 10px 14px;
             border-radius: 10px;
             font-size: 12px;
@@ -355,7 +355,7 @@
             border: 1px solid var(--border);
             border-radius: 20px;
             margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(109, 40, 217, .1);
+            box-shadow: 0 10px 30px rgba(3, 105, 161, .1);
         }
         .confirm-box .icon { font-size: 52px; margin-bottom: 8px; }
     </style>
