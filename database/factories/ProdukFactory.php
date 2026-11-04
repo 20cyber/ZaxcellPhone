@@ -16,7 +16,7 @@ class ProdukFactory extends Factory
      * @var array<string, array<int, string>>
      */
     protected array $katalog = [
-        'iPhone' => ['iPhone 11', 'iPhone 12', 'iPhone 12 Pro', 'iPhone 13', 'iPhone 13 Pro', 'iPhone XR'],
+        'iPhone' => ['11', '12', '12 Pro', '13', '13 Pro', 'XR'],
         'Samsung' => ['Galaxy A54', 'Galaxy A34', 'Galaxy S21', 'Galaxy S22', 'Galaxy Note 20'],
         'Xiaomi' => ['Redmi Note 11', 'Redmi Note 12', 'Poco X5', 'Mi 11 Lite'],
         'Oppo' => ['Reno 7', 'Reno 8', 'A77', 'A96'],
