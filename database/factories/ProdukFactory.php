@@ -21,7 +21,7 @@ class ProdukFactory extends Factory
         'Xiaomi' => ['Redmi Note 11', 'Redmi Note 12', 'Poco X5', 'Mi 11 Lite'],
         'Oppo' => ['Reno 7', 'Reno 8', 'A77', 'A96'],
         'Vivo' => ['V25', 'V27', 'Y36', 'Y100'],
-        'Realme' => ['Realme 9', 'Realme 10', 'Realme C55'],
+        'Realme' => ['9', '10', 'C55'],
     ];
 
     /**

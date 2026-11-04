@@ -21,7 +21,11 @@
         </div>
     </div>
 
+    <div class="toolbar" style="margin-top:24px;">
+        <a href="{{ route('admin.produk.index') }}" class="btn">Kelola Produk</a>
+    </div>
+
     <div class="notice">
-        Menu kelola produk &amp; pesanan masih dalam pengembangan.
+        Menu kelola pesanan masih dalam pengembangan.
     </div>
 @endsection

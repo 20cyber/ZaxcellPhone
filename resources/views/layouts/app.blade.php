@@ -233,6 +233,40 @@
         }
         .stat-label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
         .stat-value { font-size: 28px; font-weight: 700; color: var(--ink); }
+
+        .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+        .alert { padding: 12px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; }
+        .alert-success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .alert-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+        table.data-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        table.data-table th, table.data-table td { padding: 10px 14px; text-align: left; font-size: 13px; border-bottom: 1px solid var(--border); }
+        table.data-table th { background: #f1f5f9; color: var(--muted); font-weight: 600; }
+        table.data-table tr:last-child td { border-bottom: none; }
+        table.data-table .thumb-cell img, table.data-table .thumb-cell .ph { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+        table.data-table .ph { display: flex; align-items: center; justify-content: center; background: #f1f5f9; font-size: 18px; }
+        .row-actions { display: flex; gap: 10px; align-items: center; }
+        .row-actions a { color: var(--primary-dark); }
+        .row-actions button { background: none; border: none; color: var(--danger); font: inherit; cursor: pointer; padding: 0; }
+        .stok-form { display: flex; gap: 6px; align-items: center; }
+        .stok-form input { width: 56px; border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; font-size: 13px; }
+        .stok-form button { border: 1px solid var(--border); background: var(--card); border-radius: 6px; padding: 4px 8px; font-size: 12px; cursor: pointer; }
+
+        .form-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; max-width: 600px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-grid .full { grid-column: 1 / -1; }
+        .form-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+        .form-field label { font-size: 13px; font-weight: 600; }
+        .form-field input, .form-field select, .form-field textarea {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .form-field .error { color: var(--danger); font-size: 12px; }
+        .form-actions { display: flex; gap: 10px; margin-top: 8px; }
+        .current-photo { width: 90px; height: 90px; border-radius: 8px; object-fit: cover; margin-bottom: 8px; display: block; }
     </style>
 </head>
 <body>
