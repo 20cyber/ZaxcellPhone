@@ -189,6 +189,50 @@
             color: #9a3412;
             border: 1px solid #fed7aa;
         }
+        .notice-danger { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+
+        .nav-actions { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+        .nav-actions form { margin: 0; }
+        .nav-actions button {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font: inherit;
+            cursor: pointer;
+            padding: 0;
+        }
+        .nav-actions button:hover { color: var(--danger); }
+
+        .auth-wrap { display: flex; justify-content: center; padding-top: 24px; }
+        .auth-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            width: 100%;
+            max-width: 360px;
+        }
+        .auth-form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+        .auth-form .field { display: flex; flex-direction: column; gap: 4px; }
+        .auth-form label { font-size: 13px; font-weight: 600; color: var(--ink); }
+        .auth-form input[type=email], .auth-form input[type=password] {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+        .checkbox-field { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+        .back-link { display: block; text-align: center; margin-top: 18px; font-size: 13px; color: var(--primary-dark); }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 8px; }
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+        .stat-label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+        .stat-value { font-size: 28px; font-weight: 700; color: var(--ink); }
     </style>
 </head>
 <body>
@@ -198,6 +242,18 @@
                 Zaxcellphone
                 <span>Toko HP Second &middot; Yogyakarta</span>
             </a>
+
+            <div class="nav-actions">
+                @auth
+                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}">Login Admin</a>
+                @endauth
+            </div>
         </div>
     </header>
 
