@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AkunController as AdminAkunController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PesananController as AdminPesananController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
@@ -41,4 +42,8 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('pesanan', [AdminPesananController::class, 'index'])->name('pesanan.index');
     Route::get('pesanan/{pesanan}', [AdminPesananController::class, 'show'])->name('pesanan.show');
     Route::patch('pesanan/{pesanan}/status', [AdminPesananController::class, 'updateStatus'])->name('pesanan.status');
+
+    Route::get('akun', [AdminAkunController::class, 'index'])->name('akun.index');
+    Route::get('akun/tambah', [AdminAkunController::class, 'create'])->name('akun.create');
+    Route::post('akun', [AdminAkunController::class, 'store'])->name('akun.store');
 });
