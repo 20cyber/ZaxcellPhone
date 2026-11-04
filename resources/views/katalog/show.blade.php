@@ -51,9 +51,16 @@
                     Unit ini sedang <strong>{{ strtolower($produk->status) }}</strong> dan tidak dapat dipesan saat ini.
                 </div>
             @else
-                <div class="notice">
-                    Fitur keranjang &amp; checkout masih dalam pengembangan.
-                </div>
+                @if (session('status'))
+                    <div class="alert alert-success">{{ session('status') }}</div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-error">{{ session('error') }}</div>
+                @endif
+                <form method="POST" action="{{ route('cart.store', $produk) }}" style="margin-top:16px;">
+                    @csrf
+                    <button type="submit" class="btn">+ Tambah ke Keranjang</button>
+                </form>
             @endif
         </div>
     </div>

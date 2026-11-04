@@ -133,6 +133,10 @@
         .badge-status-tersedia { background: #dcfce7; color: var(--success); }
         .badge-status-ditahan { background: #fef3c7; color: var(--warning); }
         .badge-status-terjual { background: #fee2e2; color: var(--danger); }
+        .badge-status-menunggu-pembayaran { background: #fef3c7; color: var(--warning); }
+        .badge-status-dibayar, .badge-status-diproses, .badge-status-dikirim { background: #dbeafe; color: #1d4ed8; }
+        .badge-status-selesai { background: #dcfce7; color: var(--success); }
+        .badge-status-dibatalkan { background: #fee2e2; color: var(--danger); }
 
         .empty-state {
             text-align: center;
@@ -267,6 +271,53 @@
         .form-field .error { color: var(--danger); font-size: 12px; }
         .form-actions { display: flex; gap: 10px; margin-top: 8px; }
         .current-photo { width: 90px; height: 90px; border-radius: 8px; object-fit: cover; margin-bottom: 8px; display: block; }
+
+        .cart-badge {
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 1px 6px;
+            margin-left: 4px;
+        }
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            font-weight: 600;
+        }
+        .cart-summary .harga { font-size: 20px; color: var(--primary-dark); }
+
+        .sim-banner {
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            color: #3730a3;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        .pay-actions { display: flex; gap: 12px; margin-top: 20px; }
+        .btn-success { background: var(--success); }
+        .btn-success:hover { background: #15803d; }
+        .btn-danger { background: var(--danger); }
+        .btn-danger:hover { background: #b91c1c; }
+
+        .confirm-box {
+            text-align: center;
+            padding: 32px 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        .confirm-box .icon { font-size: 48px; margin-bottom: 8px; }
     </style>
 </head>
 <body>
@@ -285,6 +336,12 @@
                         <button type="submit">Logout</button>
                     </form>
                 @else
+                    <a href="{{ route('cart.index') }}">
+                        Keranjang
+                        @if (\App\Support\Cart::count() > 0)
+                            <span class="cart-badge">{{ \App\Support\Cart::count() }}</span>
+                        @endif
+                    </a>
                     <a href="{{ route('login') }}">Login Admin</a>
                 @endauth
             </div>
