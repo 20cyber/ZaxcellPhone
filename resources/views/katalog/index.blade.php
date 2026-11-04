@@ -42,7 +42,13 @@
         <div class="grid">
             @foreach ($produk as $item)
                 <a href="{{ route('katalog.show', $item) }}" class="card">
-                    <div class="thumb">📱</div>
+                    <div class="thumb">
+                        @if ($item->foto)
+                            <img src="{{ Storage::url($item->foto) }}" alt="{{ $item->merek }} {{ $item->model }}" style="width:100%; height:100%; object-fit:cover;">
+                        @else
+                            📱
+                        @endif
+                    </div>
                     <div class="body">
                         <span class="merek">{{ $item->merek }}</span>
                         <span class="model">{{ $item->model }}</span>

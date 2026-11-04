@@ -8,7 +8,13 @@
     </div>
 
     <div class="detail-layout">
-        <div class="detail-thumb">📱</div>
+        <div class="detail-thumb">
+            @if ($produk->foto)
+                <img src="{{ Storage::url($produk->foto) }}" alt="{{ $produk->merek }} {{ $produk->model }}" style="width:100%; height:100%; object-fit:cover; border-radius:22px;">
+            @else
+                📱
+            @endif
+        </div>
 
         <div class="detail-info">
             <span class="merek">{{ $produk->merek }}</span>

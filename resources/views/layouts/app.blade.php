@@ -372,6 +372,37 @@
             box-shadow: 0 10px 30px rgba(3, 105, 161, .1);
         }
         .confirm-box .icon { font-size: 52px; margin-bottom: 8px; }
+
+        .review-row {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .review-row:last-child { border-bottom: none; }
+        .review-row .thumb-preview {
+            width: 90px;
+            height: 90px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+        .review-row .info { flex: 1; min-width: 0; }
+        .ai-guess { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+        .ai-guess strong { color: var(--primary-dark); }
+        .review-row select {
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #0e1d33;
+            color: var(--ink);
+            width: 100%;
+            max-width: 420px;
+        }
     </style>
 </head>
 <body>
