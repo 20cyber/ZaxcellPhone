@@ -27,10 +27,17 @@
         * { box-sizing: border-box; }
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background: var(--bg);
-            background-image: radial-gradient(circle at 10% -10%, rgba(6, 182, 212, .08), transparent 40%),
-                radial-gradient(circle at 90% 0%, rgba(2, 132, 199, .1), transparent 40%);
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(rgba(2, 132, 199, .06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 132, 199, .06) 1px, transparent 1px),
+                radial-gradient(circle at 12% 0%, rgba(6, 182, 212, .16), transparent 42%),
+                radial-gradient(circle at 92% 8%, rgba(2, 132, 199, .18), transparent 40%),
+                radial-gradient(circle at 50% 100%, rgba(34, 197, 94, .08), transparent 45%);
+            background-size: 32px 32px, 32px 32px, auto, auto, auto;
+            background-attachment: fixed;
             color: var(--ink);
         }
         a { color: inherit; text-decoration: none; }
