@@ -361,6 +361,8 @@
         .btn-success:hover { box-shadow: 0 6px 18px rgba(16, 185, 129, .45); }
         .btn-danger { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 4px 14px rgba(239, 68, 68, .35); }
         .btn-danger:hover { box-shadow: 0 6px 18px rgba(239, 68, 68, .45); }
+        .btn:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; transform: none; }
+        .btn:disabled:hover { transform: none; box-shadow: none; }
 
         .confirm-box {
             text-align: center;

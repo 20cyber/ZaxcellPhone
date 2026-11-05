@@ -35,9 +35,23 @@
         <button type="submit" class="btn btn-outline">Cari</button>
     </form>
 
+    <form id="form-hapus-massal" method="POST" action="{{ route('admin.produk.hapus-massal') }}"
+          onsubmit="return confirm('Hapus semua produk yang dicentang? Tindakan ini tidak bisa dibatalkan.');">
+        @csrf
+        @method('DELETE')
+    </form>
+
+    <div class="toolbar" style="margin-bottom:12px;">
+        <span id="info-terpilih" style="font-size:13px; color:var(--muted);">Belum ada yang dicentang</span>
+        <button type="submit" form="form-hapus-massal" id="btn-hapus-massal" class="btn btn-danger" disabled>
+            Hapus yang Dicentang
+        </button>
+    </div>
+
     <table class="data-table">
         <thead>
             <tr>
+                <th><input type="checkbox" id="chk-semua" onclick="toggleSemuaCentang(this)"></th>
                 <th>Foto</th>
                 <th>Produk</th>
                 <th>Harga</th>
@@ -49,6 +63,10 @@
         <tbody>
             @forelse ($produk as $item)
                 <tr>
+                    <td>
+                        <input type="checkbox" name="produk_id[]" value="{{ $item->id_produk }}"
+                               form="form-hapus-massal" class="chk-produk" onchange="updateInfoTerpilih()">
+                    </td>
                     <td class="thumb-cell">
                         @if ($item->foto)
                             <img src="{{ Storage::url($item->foto) }}" alt="">
@@ -85,7 +103,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" style="text-align:center; color:var(--muted); padding:32px;">Belum ada produk.</td>
+                    <td colspan="7" style="text-align:center; color:var(--muted); padding:32px;">Belum ada produk.</td>
                 </tr>
             @endforelse
         </tbody>
@@ -94,4 +112,28 @@
     <div class="pagination-wrap">
         {{ $produk->links() }}
     </div>
+
+    <script>
+        function updateInfoTerpilih() {
+            const dicentang = document.querySelectorAll('.chk-produk:checked');
+            const info = document.getElementById('info-terpilih');
+            const tombol = document.getElementById('btn-hapus-massal');
+
+            if (dicentang.length === 0) {
+                info.textContent = 'Belum ada yang dicentang';
+                tombol.disabled = true;
+            } else {
+                info.textContent = dicentang.length + ' produk dicentang';
+                tombol.disabled = false;
+            }
+
+            const semua = document.querySelectorAll('.chk-produk');
+            document.getElementById('chk-semua').checked = semua.length > 0 && dicentang.length === semua.length;
+        }
+
+        function toggleSemuaCentang(sumber) {
+            document.querySelectorAll('.chk-produk').forEach(chk => chk.checked = sumber.checked);
+            updateInfoTerpilih();
+        }
+    </script>
 @endsection

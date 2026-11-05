@@ -41,6 +41,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
 
     Route::resource('produk', AdminProdukController::class)->except(['show']);
     Route::patch('produk/{produk}/stok', [AdminProdukController::class, 'updateStok'])->name('produk.stok');
+    Route::delete('produk-hapus-massal', [AdminProdukController::class, 'hapusMassal'])->name('produk.hapus-massal');
 
     Route::get('produk-import', [ProdukImportController::class, 'create'])->name('produk.import.create');
     Route::get('produk-import/template', [ProdukImportController::class, 'template'])->name('produk.import.template');

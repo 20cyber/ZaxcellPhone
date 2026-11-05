@@ -100,6 +100,39 @@ class ProdukController extends Controller
     }
 
     /**
+     * Hapus banyak produk sekaligus (dicentang dari daftar).
+     */
+    public function hapusMassal(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'produk_id' => ['required', 'array', 'min:1'],
+            'produk_id.*' => ['integer', 'exists:produk,id_produk'],
+        ]);
+
+        $jumlahTerhapus = 0;
+        $jumlahGagal = 0;
+
+        foreach (Produk::whereIn('id_produk', $data['produk_id'])->get() as $produk) {
+            try {
+                if ($produk->foto) {
+                    Storage::disk('public')->delete($produk->foto);
+                }
+                $produk->delete();
+                $jumlahTerhapus++;
+            } catch (QueryException) {
+                $jumlahGagal++;
+            }
+        }
+
+        $pesan = "{$jumlahTerhapus} produk berhasil dihapus.";
+        if ($jumlahGagal > 0) {
+            $pesan .= " {$jumlahGagal} produk gagal dihapus karena sudah pernah masuk pesanan.";
+        }
+
+        return redirect()->route('admin.produk.index')->with($jumlahGagal > 0 ? 'error' : 'status', $pesan);
+    }
+
+    /**
      * Perbarui stok — menu terpisah dari edit unit (FA-05).
      */
     public function updateStok(Request $request, Produk $produk): RedirectResponse
