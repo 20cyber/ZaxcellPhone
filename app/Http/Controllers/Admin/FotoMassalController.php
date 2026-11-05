@@ -7,6 +7,7 @@ use App\Models\Produk;
 use App\Services\GeminiService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -31,38 +32,115 @@ class FotoMassalController extends Controller
     {
         $request->validate([
             'foto' => ['required', 'array', 'min:1'],
-            'foto.*' => ['image', 'max:8192'],
+            'foto.*' => ['file', 'mimes:jpg,jpeg,png,webp,gif,docx', 'max:51200'],
         ]);
 
         $kandidatProduk = Produk::whereNull('foto')->orWhere('foto', '')->orderByDesc('created_at')->get();
 
         $baris = [];
+        $tmpUntukDihapus = [];
 
         foreach ($request->file('foto') as $file) {
-            $path = $file->store('produk-massal', 'public');
+            $isDocx = in_array(strtolower($file->getClientOriginalExtension()), ['docx'], true);
 
-            $tebakan = $gemini->identifikasiHp(Storage::disk('public')->path($path), $file->getMimeType());
+            $sumberGambar = $isDocx
+                ? $this->ekstrakFotoDariDocx($file)
+                : [['path' => $file->getRealPath(), 'mime' => $file->getMimeType(), 'ekstensi' => $file->getClientOriginalExtension() ?: 'jpg']];
 
-            $skor = $kandidatProduk
-                ->map(fn ($produk) => [
-                    'produk' => $produk,
-                    'skor' => $this->skorKecocokan($produk, $tebakan),
-                ])
-                ->sortByDesc('skor')
-                ->take(5)
-                ->values();
+            foreach ($sumberGambar as $sumber) {
+                $isiFile = file_get_contents($sumber['path']);
+                $namaBaru = 'produk-massal/' . \Illuminate\Support\Str::random(40) . '.' . $sumber['ekstensi'];
+                Storage::disk('public')->put($namaBaru, $isiFile);
 
-            $baris[] = [
-                'path' => $path,
-                'url' => Storage::disk('public')->url($path),
-                'tebakan' => $tebakan,
-                'kandidat' => $skor,
-            ];
+                if ($isDocx) {
+                    $tmpUntukDihapus[] = $sumber['path'];
+                }
+
+                $tebakan = $gemini->identifikasiHp(Storage::disk('public')->path($namaBaru), $sumber['mime']);
+
+                $skor = $kandidatProduk
+                    ->map(fn ($produk) => [
+                        'produk' => $produk,
+                        'skor' => $this->skorKecocokan($produk, $tebakan),
+                    ])
+                    ->sortByDesc('skor')
+                    ->take(5)
+                    ->values();
+
+                $baris[] = [
+                    'path' => $namaBaru,
+                    'url' => Storage::disk('public')->url($namaBaru),
+                    'tebakan' => $tebakan,
+                    'kandidat' => $skor,
+                ];
+            }
+        }
+
+        foreach ($tmpUntukDihapus as $path) {
+            @unlink($path);
+        }
+
+        if (empty($baris)) {
+            return redirect()
+                ->route('admin.foto-massal.create')
+                ->with('error', 'Tidak ada foto yang terbaca. Kalau upload file Word, pastikan ada foto yang ditempel di dalamnya.');
         }
 
         return view('admin.produk.foto-massal-review', [
             'baris' => $baris,
         ]);
+    }
+
+    /**
+     * Ambil semua foto yang ditempel di dalam file Word (.docx) — file docx
+     * secara teknis adalah ZIP, foto-fotonya ada di folder word/media/.
+     *
+     * @return array<int, array{path: string, mime: string, ekstensi: string}>
+     */
+    protected function ekstrakFotoDariDocx(UploadedFile $file): array
+    {
+        $hasil = [];
+        $zip = new \ZipArchive;
+
+        if ($zip->open($file->getRealPath()) !== true) {
+            return $hasil;
+        }
+
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $nama = $zip->getNameIndex($i);
+
+            if (! str_starts_with($nama, 'word/media/')) {
+                continue;
+            }
+
+            $ekstensi = strtolower(pathinfo($nama, PATHINFO_EXTENSION));
+            $mime = match ($ekstensi) {
+                'jpg', 'jpeg' => 'image/jpeg',
+                'png' => 'image/png',
+                'webp' => 'image/webp',
+                'gif' => 'image/gif',
+                default => null,
+            };
+
+            if (! $mime) {
+                continue;
+            }
+
+            $isi = $zip->getFromIndex($i);
+
+            if ($isi === false) {
+                continue;
+            }
+
+            $tmpPath = tempnam(sys_get_temp_dir(), 'docx_img_') . '.' . $ekstensi;
+            file_put_contents($tmpPath, $isi);
+
+            $hasil[] = ['path' => $tmpPath, 'mime' => $mime, 'ekstensi' => $ekstensi];
+        }
+
+        $zip->close();
+
+        return $hasil;
     }
 
     /**

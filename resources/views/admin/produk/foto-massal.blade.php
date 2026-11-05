@@ -9,7 +9,8 @@
 
     <h1 class="page-title">Upload Foto Massal (AI-assisted)</h1>
     <p class="page-subtitle">
-        Pilih banyak foto sekaligus. Gemini AI akan menebak merek/model/warna tiap foto dan
+        Pilih banyak foto sekaligus, atau upload <strong>1 file Word (.docx)</strong> yang sudah
+        ditempeli banyak foto di dalamnya. Gemini AI akan menebak merek/model/warna tiap foto dan
         menyarankan produk yang cocok — kamu tinggal konfirmasi, bukan isi satu-satu.
     </p>
 
@@ -28,8 +29,9 @@
         <form method="POST" action="{{ route('admin.foto-massal.analisis') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-field">
-                <label for="foto">Pilih Foto (bisa banyak sekaligus)</label>
-                <input type="file" id="foto" name="foto[]" accept="image/*" multiple required>
+                <label for="foto">Pilih Foto (bisa banyak sekaligus) atau File Word (.docx)</label>
+                <input type="file" id="foto" name="foto[]" accept="image/*,.docx" multiple required>
+                <span style="font-size:12px; color:var(--muted);">Bisa dicampur: pilih beberapa foto langsung, atau satu file .docx berisi banyak foto, atau keduanya sekaligus.</span>
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn">Analisis dengan AI</button>
