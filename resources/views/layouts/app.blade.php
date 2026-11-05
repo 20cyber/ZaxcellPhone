@@ -392,6 +392,21 @@
         .review-row .info { flex: 1; min-width: 0; }
         .ai-guess { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
         .ai-guess strong { color: var(--primary-dark); }
+        .edit-table input[type=text], .edit-table input[type=number] {
+            width: 100%;
+            min-width: 90px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px 7px;
+            font-size: 12.5px;
+            background: #0e1d33;
+            color: var(--ink);
+            font-family: inherit;
+        }
+        .edit-table td { padding: 6px 8px; vertical-align: top; }
+        .edit-table th { white-space: nowrap; }
+        .edit-table td.col-sertakan { text-align: center; }
+
         .review-row select {
             border: 1.5px solid var(--border);
             border-radius: 10px;

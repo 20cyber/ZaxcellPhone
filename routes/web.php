@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FotoMassalController;
 use App\Http\Controllers\Admin\PesananController as AdminPesananController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
+use App\Http\Controllers\Admin\PricelistImportController;
 use App\Http\Controllers\Admin\ProdukImportController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
@@ -44,6 +45,10 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('produk-import', [ProdukImportController::class, 'create'])->name('produk.import.create');
     Route::get('produk-import/template', [ProdukImportController::class, 'template'])->name('produk.import.template');
     Route::post('produk-import', [ProdukImportController::class, 'store'])->name('produk.import.store');
+
+    Route::get('pricelist-import', [PricelistImportController::class, 'create'])->name('pricelist-import.create');
+    Route::post('pricelist-import/analisis', [PricelistImportController::class, 'analisis'])->name('pricelist-import.analisis');
+    Route::post('pricelist-import/simpan', [PricelistImportController::class, 'simpan'])->name('pricelist-import.simpan');
 
     Route::get('foto-massal', [FotoMassalController::class, 'create'])->name('foto-massal.create');
     Route::post('foto-massal/analisis', [FotoMassalController::class, 'analisis'])->name('foto-massal.analisis');

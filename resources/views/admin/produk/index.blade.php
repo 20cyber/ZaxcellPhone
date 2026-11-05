@@ -21,6 +21,7 @@
         </div>
         <div style="display:flex; gap:10px;">
             <a href="{{ route('admin.produk.import.create') }}" class="btn btn-outline">Import Excel</a>
+            <a href="{{ route('admin.pricelist-import.create') }}" class="btn btn-outline">Import dari Foto Pricelist</a>
             <a href="{{ route('admin.foto-massal.create') }}" class="btn btn-outline">Upload Foto Massal</a>
             <a href="{{ route('admin.produk.create') }}" class="btn">+ Tambah Produk</a>
         </div>
