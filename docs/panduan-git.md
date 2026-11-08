@@ -13,10 +13,10 @@ Lalu edit `.env`, sesuaikan `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` dengan s
 (biasanya `DB_USERNAME=root`, `DB_PASSWORD=` kosong kalau pakai Laragon default).
 
 ### Isi database (pilih salah satu)
-**Opsi A — pakai dump database (paling gampang, dapat data yang sama persis):**
+**Opsi A — pakai dump database (paling gampang, dapat data produk yang sudah diinput):**
 1. Buat database kosong namanya `zaxcellphone` lewat phpMyAdmin
 2. Klik database itu → tab **Import** → pilih file `database/dump/zaxcellphone.sql` dari hasil clone → klik **Go**
-3. Selesai, data sama persis kayak yang dipakai buat demo
+3. Selesai, produk dan akun admin sudah terisi. Data pembeli dan pesanan tidak ikut, dan file foto produk tidak ada di GitHub, jadi foto perlu diupload ulang.
 
 **Opsi B — generate data baru lewat migrasi (data acak, bukan yang asli):**
 ```bash
