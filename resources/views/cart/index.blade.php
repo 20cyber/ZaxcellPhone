@@ -3,8 +3,12 @@
 @section('title', 'Keranjang')
 
 @section('content')
-    <h1 class="page-title">Keranjang</h1>
-    <p class="page-subtitle">{{ $items->count() }} unit dipilih</p>
+    <div class="breadcrumb">
+        <a href="{{ route('katalog.index') }}">Beranda</a> &rsaquo; Keranjang
+    </div>
+
+    <h1 class="page-title">Keranjang Belanja</h1>
+    <p class="page-subtitle">Periksa kembali unit pilihanmu sebelum checkout.</p>
 
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
@@ -19,50 +23,44 @@
             <p style="margin-top:12px;"><a href="{{ route('katalog.index') }}" class="btn">Lihat Katalog</a></p>
         </div>
     @else
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Produk</th>
-                    <th>Harga</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="cart-layout">
+            <div class="panel">
                 @foreach ($items as $item)
-                    <tr>
-                        <td class="thumb-cell">
+                    <div class="cart-row">
+                        <div class="cart-thumb">
                             @if ($item->foto)
                                 <img src="{{ Storage::url($item->foto) }}" alt="">
                             @else
-                                <div class="ph">📱</div>
+                                📱
                             @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('katalog.show', $item) }}"><strong>{{ $item->merek }} {{ $item->model }}</strong></a><br>
-                            <span style="color:var(--muted)">{{ $item->kondisi }}</span>
-                        </td>
-                        <td>Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
-                        <td>
-                            <form method="POST" action="{{ route('cart.destroy', $item) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="row-actions" style="background:none;border:none;color:var(--danger);cursor:pointer;">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                        </div>
+                        <div class="cart-info">
+                            <a href="{{ route('katalog.show', $item) }}" class="nama">{{ $item->merek }} {{ $item->model }}</a>
+                            <span class="sub">{{ $item->kondisi }}@if ($item->warna) &middot; {{ $item->warna }}@endif</span>
+                        </div>
+                        <span class="cart-price">Rp{{ number_format($item->harga, 0, ',', '.') }}</span>
+                        <form method="POST" action="{{ route('cart.destroy', $item) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="remove-btn" title="Hapus dari keranjang" aria-label="Hapus dari keranjang">&times;</button>
+                        </form>
+                    </div>
                 @endforeach
-            </tbody>
-        </table>
+                <a href="{{ route('katalog.index') }}" class="panel-link">&larr; Tambah unit lainnya</a>
+            </div>
 
-        <div class="cart-summary">
-            <span>Total</span>
-            <span class="harga">Rp{{ number_format($total, 0, ',', '.') }}</span>
-        </div>
-
-        <div class="form-actions">
-            <a href="{{ route('checkout.create') }}" class="btn">Lanjut ke Checkout</a>
-            <a href="{{ route('katalog.index') }}" class="btn btn-outline">Tambah Unit Lain</a>
+            <aside class="panel pad">
+                <h3>Ringkasan Pesanan</h3>
+                <div class="sum-row"><span>Total unit</span><span>{{ $items->count() }}</span></div>
+                <div class="sum-total">
+                    <span>Subtotal</span>
+                    <span class="harga">Rp{{ number_format($total, 0, ',', '.') }}</span>
+                </div>
+                <a href="{{ route('checkout.create') }}" class="btn btn-block">Lanjut ke Checkout &rarr;</a>
+                <div class="info-box">
+                    Unit akan ditahan untukmu setelah checkout. Selesaikan pembayaran sebelum batas waktu yang tertera.
+                </div>
+            </aside>
         </div>
     @endif
 @endsection

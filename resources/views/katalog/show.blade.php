@@ -4,7 +4,9 @@
 
 @section('content')
     <div class="breadcrumb">
-        <a href="{{ route('katalog.index') }}">&larr; Kembali ke katalog</a>
+        <a href="{{ route('katalog.index') }}">Beranda</a> &rsaquo;
+        <a href="{{ route('katalog.index') }}">Katalog</a> &rsaquo;
+        {{ $produk->merek }} {{ $produk->model }}
     </div>
 
     <div class="detail-layout">
@@ -17,7 +19,7 @@
         </div>
 
         <div class="detail-info">
-            <span class="merek">{{ $produk->merek }}</span>
+            <span class="eyebrow">{{ $produk->merek }}</span>
             <h1>{{ $produk->merek }} {{ $produk->model }}</h1>
 
             <div class="badges">
@@ -65,7 +67,7 @@
                 @endif
                 <form method="POST" action="{{ route('cart.store', $produk) }}" style="margin-top:16px;">
                     @csrf
-                    <button type="submit" class="btn">+ Tambah ke Keranjang</button>
+                    <button type="submit" class="btn btn-lg">+ Tambah ke Keranjang</button>
                 </form>
             @endif
         </div>

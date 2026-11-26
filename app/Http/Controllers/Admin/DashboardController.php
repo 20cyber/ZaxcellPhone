@@ -17,7 +17,9 @@ class DashboardController extends Controller
         return view('admin.dashboard', [
             'jumlahProduk' => Produk::count(),
             'jumlahTersedia' => Produk::where('status', 'Tersedia')->count(),
+            'jumlahTerjual' => Produk::where('status', 'Terjual')->count(),
             'jumlahPesananMasuk' => Pesanan::where('status_pesanan', 'Menunggu Pembayaran')->count(),
+            'pesananTerbaru' => Pesanan::with('pembeli')->latest()->take(5)->get(),
         ]);
     }
 }
